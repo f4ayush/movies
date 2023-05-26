@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Movies</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1><a href="http://localhost:8000/">Movies</a></h1>
+  <form action="http://localhost:8000/movies" method="get">
+    <input id="genreInput" type="text" name="genre" placeholder="genre">
+    <button id="genreSubmit" type="submit">Filter By Genres</button>
+  </form>
+
+  <form action="http://localhost:8000/movies" method="get">
+    <input id="languageInput" type="text" name="lang" placeholder="language">
+    <button id="languageSubmit" type="submit">Filter by Language</button>
+  </form>
+  <table>
+    <tr>
+      <th>id</th>
+      <th>imdb_title_id</th>
+      <th>original_title</th>
+      <th>year</th>
+      <th>date_published</th>
+      <th>genre</th>
+      <th>duration</th>
+      <th>language</th>
+      <th>description</th>
+      <th>reviews_from_users</th>
+      <th>reviews_from_critics</th>
+    </tr>
+    <% movies.forEach(function(movie) { %>
+      <tr>
+        <td><%= movie.id %></td>
+        <td><%= movie.imdb_title_id %></td>
+        <td><%= movie.original_title %></td>
+        <td><%= movie.year %></td>
+        <td><%= movie.date_published %></td>
+        <td><%= movie.genre %></td>
+        <td><%= movie.duration %></td>
+        <td><%= movie.language %></td>
+        <td><%= movie.description %></td>
+        <td><%= movie.reviews_from_users %></td>
+        <td><%= movie.reviews_from_critics %></td>
+      </tr>
+    <% }); %>
+    <% if(!movies || movies.length == 0){ %>
+      <tr>
+        No data found
+      </tr>
+    <% } %>
+  </table>
+</body>
+</html>
